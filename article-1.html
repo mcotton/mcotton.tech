@@ -57,15 +57,14 @@
             <div class="row">
                 <div class="col-9 offset-1"> 
                     <p>
-                        One of our most common requests is, "How do I put my camera on my website?".  It has always been possible, but the aim of this example page is to make it more accessable to everyone.  Along the way we will explain several other aspects of our API.  The most important of which is our real-time event stream (refered to as our poll stream).
+                        One of our most common requests is, "How do I put my camera on my website?".  It has always been possible, but the aim of this example page is to make it more accessable to everyone.  Let's start with how our API is architected.  There are two main concepts to know when working with our API.  First is our real-time event stream (refered to as our poll stream).  The second is how we manage video.
                     </p>
-
                     <p>
-                        Eagle Eye provides two video streams for each camera.  The first is the full resolution, unmodified stream from the camera.  The other is what we call the preview stream.  It is a lower resolution version of the full video stream.  We provide the preview stream as a series of JPEG images.  Typically the preview stream is updated once per second but it can be as fast as 4 frames per second.
+                        Eagle Eye provides two video streams for each camera.  The first is the full resolution, unmodified stream from the camera.  The other is what we call the preview stream.  It is a lower resolution version of the full video stream.  We provide the preview stream as a series of JPEG images.
                     </p>
-
                     <p>
-                        All requests to our API should include the <a href="https://apidocs.eagleeyenetworks.com/apidocs/#get-an-api-key">API key that you created</a>.  This key unique identifies the developer in our system.  This is helpful in troubleshooting problems and tuning throttling and bandwidth limits for known Technology Partners.  In the future we will require that the API key for all requests and including it now will prevent it breaking in the future.
+                        Working with straight video is hard.  We make it easier by providing a low resolution JPEG image stream from each camera.  If you replace this image every second you can make very basic "video".  The poll stream notifies you whenever a new image is available for you to replace the old one with.
+                    </p>
                 </div>
             </div>
             <div class="row">
@@ -77,11 +76,11 @@
             <div class="row">
                 <div class="col-6 offset-1">       
                    <p>
-                       The first step in working with our API is to login with your username, password.  After the <a href="https://apidocs.eagleeyenetworks.com/apidocs/#authentication">Authentication</a> step, you will get a token which you will then need to pass into the <a href="https://apidocs.eagleeyenetworks.com/apidocs/#3-authorize">Authorization</a> step.  We automatically return you the user information for the user who just logged-in.
+                       The first step in working with our API is to login with your username, password and API key.  All requests to our API should include the <a href="https://apidocs.eagleeyenetworks.com/apidocs/#get-an-api-key">API key that you created</a>.  After the <a href="https://apidocs.eagleeyenetworks.com/apidocs/#authentication">Authentication</a> step, you will get a token which you will then need to pass into the <a href="https://apidocs.eagleeyenetworks.com/apidocs/#3-authorize">Authorization</a> step.  We automatically return you the user information for the user who just logged-in.
                     </p>
                     <p>
                         After successfully completing the login process you will get a session cookie to use on all calls during the remainder of your session.  Note: you can change the cookie experation length as a user account setting.
-                   </p> 
+                   </p>
                 </div>
                 <div class="col-5">
                     <img src="images/step-001.png">
