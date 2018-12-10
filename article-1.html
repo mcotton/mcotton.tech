@@ -222,7 +222,7 @@
         for (var device in data.data.cameras) {
             if(data.data.cameras[device].pre) {
                 if(!img_holders[device]) {
-                    $('#camera_holder').append('<div class="col-2 offset-1"><a href="/' + device + '"><img class="preview_img" id="img_' + device + '"></a></div>');
+                    $('#camera_holder').append('<div class="col-2 offset-1"><img class="preview_img" id="img_' + device + '"></div>');
                     img_holders[device] = $('#img_' + device);
                 }
                 
@@ -232,8 +232,8 @@
 
                 if(camera_status[device].loading == false) {
                     console.log('fetching preview')
-                    img_holders[device].attr('src', '/image/' + device + '/' + data.data.cameras[device].pre + '?socket_id=' + socket_id);
-                    camera_status[device] = { 'loading': '/image/' + device + '/' + data.data.cameras[device].pre }
+                    img_holders[device].attr('src', '/watcher/image/' + device + '/' + data.data.cameras[device].pre + '?socket_id=' + socket_id);
+                    camera_status[device] = { 'loading': '/watcher/image/' + device + '/' + data.data.cameras[device].pre }
                     img_holders[device].on('load', function() {
                         camera_status[device] = {'loading': false }
                     })
