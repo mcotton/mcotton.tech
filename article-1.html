@@ -65,7 +65,7 @@
                     </p>
 
                     <p>
-                        All requests to our API should include an API key that you have created.  This key unique identifies the developer in our system.  This is helpful in troubleshooting problems and tuning throttling and bandwidth limits for known Technology Partners.  In the future we will require that the API key for all requests and including it now will prevent it breaking in the future.
+                        All requests to our API should include the <a href="https://apidocs.eagleeyenetworks.com/apidocs/#get-an-api-key">API key that you created</a>.  This key unique identifies the developer in our system.  This is helpful in troubleshooting problems and tuning throttling and bandwidth limits for known Technology Partners.  In the future we will require that the API key for all requests and including it now will prevent it breaking in the future.
                 </div>
             </div>
             <div class="row">
@@ -77,10 +77,10 @@
             <div class="row">
                 <div class="col-6 offset-1">       
                    <p>
-                       The first step in working with our API is to login with your username, password.  After the Authentication step, you will get a token which you will then need to pass into the Authorization step.  We automatically return you the user information for the user who just logged-in.
+                       The first step in working with our API is to login with your username, password.  After the <a href="https://apidocs.eagleeyenetworks.com/apidocs/#authentication">Authentication</a> step, you will get a token which you will then need to pass into the <a href="https://apidocs.eagleeyenetworks.com/apidocs/#3-authorize">Authorization</a> step.  We automatically return you the user information for the user who just logged-in.
                     </p>
                     <p>
-                        After successfully completing the login process you will get a session cookie for use on all calls during the remainder of your session (session cookie experation length is an account setting).
+                        After successfully completing the login process you will get a session cookie to use on all calls during the remainder of your session.  Note: you can change the cookie experation length as a user account setting.
                    </p> 
                 </div>
                 <div class="col-5">
@@ -96,7 +96,7 @@
             <div class="row">
                 <div class="col-6 offset-1">
                     <p>
-                        The currently logged-in user is able to get information about what devices they have been given access to.  In simple cases that may be a single camera.  In other cases it may be thousends of cameras accross multiple locations.
+                        The currently logged-in user is able to get information about what <a href="https://apidocs.eagleeyenetworks.com/apidocs/#get-list-of-cameras">devices they have been given access to</a>.  The process for listening to bridge and cameras events is the same.  With the obvious difference that cameras provide video streams.
                     </p>
                 </div>
                 <div class="col-5">
@@ -113,13 +113,13 @@
             <div class="row">
                 <div class="col-6 offset-1">
                     <p>
-                        You subscribe to the poll stream by passing the device_id and the resources that you are interesting in receiving.  Depending on use cases you may just need to know when there is a new preview image available.  You can the ability to monitor everything about each device such as status, motion events, recording events, analytics, setting changes, etc.
+                        You <a href="https://apidocs.eagleeyenetworks.com/apidocs/#initialize-poll">subscribe to the poll stream</a> by passing the devices and the resources that you are interesting in receiving.  In this case, we just need to know when there is a new preview image available.  You can subscribe to more.  It is the same concept to monitor everything about each device.  This works for status, motion events, recording events, analytics, setting changes, etc.
                     </p>
                     <p>
-                        After you subscribe to the poll stream you will get back the lasted state for the resources that have been requested.  You can use this as a starting point to start displaying this information.  You will be notified of all changes going forward.  Subscribing also returns another cookie that is passed in addition to the authorization cookie.
+                        After you subscribe to the poll stream you will get back the latest state for the resources that have been requested.  You can use this as a starting point to display this information.  For all subsequent requests, you will be notified of all changes going forward.  Subscribing returns another cookie.  This cookie is used to remember when you were last updated.  You will need to pass this in addition to the authorization cookie.
                     </p>
                     <p>
-                        If your connection is interrupted or your polling session cookie expires, you can always re-subscribe to get the latest values and be back in sync.
+                        If your needs change, the connection is interrupted, or your polling session cookie expires you can always re-subscribe to get the latest values and be back in sync.
                     </p>
                 </div>
                 <div class="col-5">
@@ -136,7 +136,11 @@
             <div class="row">
                 <div class="col-6 offset-1">
                     <p>
-                        You should immediately check the poll stream for new events.  The poll stream will return the latest values each time you check. Depending on your application you can check the poll stream as often as needed.  The response is based on the poll session cookie so there is no advantage in making simultanious connections to it.  Immediately opening a new connection each time you get a response is the recommending process.  This also allows your interface to adapt to changing bandwidth conditions.
+                        You should continue to <a href="https://apidocs.eagleeyenetworks.com/apidocs/#polling">check the poll stream for new events</a>.  The poll stream will return the latest values each time you check. Depending on your application you can check the poll stream immediately after getting a response.  The response is based on the poll session cookie and the recommended pattern is to immediately opening a new connection each time you get a response.  
+                    </p>
+
+                    <p>
+                        This also allows your interface to adapt to changing bandwidth conditions.  If the network connection slows down and you can not get a preview image every second, you can still listen to the poll stream every second and only update the preview image after the previous has loaded.  This measns you interface will gracefully degrade to handle bandwidth and latency changes.
                     </p>
                 </div>
                 <div class="col-5">
